@@ -1,0 +1,8 @@
+version: '3'
+services:
+  python3:
+    build: .
+    container_name: 'mangum-test'
+    working_dir: '/app'
+    volumes:
+      - ./:/app

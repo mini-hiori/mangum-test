@@ -1,0 +1,21 @@
+# ref:https://qiita.com/yktakaha4/items/ead117870617f45c70d5
+service: lambda-docker-serverless
+
+provider:
+  name: aws
+  stage: prod
+  region: ${env:AWS_DEFAULT_REGION}
+  deploymentBucket: lambda-docker-serverless-deployment
+
+functions:
+  index:
+    # !!! ここポイント !!!
+    image: "#{AWS::AccountId}.dkr.ecr.#{AWS::Region}.amazonaws.com/lambda-docker-serverless-repos@${env:IMAGE_DIGEST}"
+    events:
+      - http:
+          path: index
+          method: post
+          cors: true
+
+plugins:
+  - serverless-pseudo-parameters
