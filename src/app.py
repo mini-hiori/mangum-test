@@ -29,9 +29,9 @@ def post_hello(param: HelloParam):
     postで返事する
     """
     if param.name:
-        message = f"[GET]hello, {param.name}!"
+        message = f"[POST]hello, {param.name}!"
     else:
-        message = f"[GET]hello, visitor!"
+        message = f"[POST]hello, visitor!"
 
     return {"message": message}
 
