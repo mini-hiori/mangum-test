@@ -14,12 +14,7 @@ functions:
     events:
       - http:
           integration: lambda-proxy
-          path: hello
-          method: GET
-          cors: true
-      - http:
-          integration: lambda-proxy
-          path: hello_post
-          method: POST
+          path: /{proxy+}
+          method: ANY
           cors: true
 
