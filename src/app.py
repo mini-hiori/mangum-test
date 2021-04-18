@@ -1,3 +1,4 @@
+# ref: https://github.com/TatchNicolas/sls-mangum-fastapi/blob/master/exam_results/main.py
 from typing import List
 
 from fastapi import FastAPI, HTTPException
@@ -38,4 +39,4 @@ def post_hello(param: HelloParam):
     return {"message": message}
 
 
-handler = Mangum(app, False)
+handler = Mangum(app)

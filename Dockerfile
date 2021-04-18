@@ -30,9 +30,9 @@ WORKDIR ${FUNCTION_DIR}
 COPY --from=build-image ${FUNCTION_DIR} ${FUNCTION_DIR}
 ADD https://github.com/aws/aws-lambda-runtime-interface-emulator/releases/latest/download/aws-lambda-rie /usr/bin/aws-lambda-rie
 COPY entry.sh /
-COPY src/requirements.txt /
+COPY requirements.txt /
 RUN chmod 755 /usr/bin/aws-lambda-rie /entry.sh
 RUN apk add git
 RUN pip install -r requirements.txt
 ENTRYPOINT [ "/entry.sh" ]
-CMD [ "src/app.py" ]
+CMD [ "python" ]
