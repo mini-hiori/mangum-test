@@ -1,4 +1,5 @@
 .DS_Store
+.serverless
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
