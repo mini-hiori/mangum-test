@@ -14,7 +14,7 @@ functions:
     events:
       - http:
           integration: lambda-proxy
-          path: /{path+}
+          path: /{proxy+}
           method: ANY
           cors: true
 
