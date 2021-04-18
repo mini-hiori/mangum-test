@@ -33,7 +33,7 @@ def post_hello(param: HelloParam):
     if not param.name:
         raise HTTPException(status_code=400, detail="おなまえがないよ")
     else:
-        message = f"[GET]hello, {name}!"
+        message = f"[GET]hello, {param.name}!"
 
     return {"message": message}
 
