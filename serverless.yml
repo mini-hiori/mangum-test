@@ -4,18 +4,22 @@ service: lambda-docker-serverless
 provider:
   name: aws
   stage: prod
-  region: ${env:AWS_DEFAULT_REGION}
-  deploymentBucket: lambda-docker-serverless-deployment
+  region: ap-northeast-1
+  deploymentBucket: mini-serverless-framework # デプロイ時に使うS3 あまり増やすと上限に引っかかるのでこれだけにした
+  logRetentionInDays: 30 # Cloudwatchのログ保存期間 無限課金防止
 
 functions:
   index:
-    # !!! ここポイント !!!
-    image: "#{AWS::AccountId}.dkr.ecr.#{AWS::Region}.amazonaws.com/lambda-docker-serverless-repos@${env:IMAGE_DIGEST}"
+    image: "${ssm:AccountID}.dkr.ecr.ap-northeast-1.amazonaws.com/${ssm:MangumRepository}" # ダイジェスト込み
     events:
       - http:
-          path: index
-          method: post
+          integration: lambda-proxy
+          path: hello
+          method: GET
+          cors: true
+      - http:
+          integration: lambda-proxy
+          path: hello_post
+          method: POST
           cors: true
 
-plugins:
-  - serverless-pseudo-parameters
