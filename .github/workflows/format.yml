@@ -1,0 +1,28 @@
+# ref:https://zenn.dev/pesuchin/articles/2e4dbcdd71e61f4128e5
+name: format
+
+on:
+  push:
+
+jobs:
+    formatter:
+        name: formatter
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                python-version: [3.9.0]
+        steps:
+          - name: Checkout
+            uses: actions/checkout@v2
+          - name: Set up Python ${{ matrix.python-version }}
+            uses: actions/setup-python@v2
+            with:
+              python-version: ${{ matrix.python-version }}
+          - name: install formatter tools
+            run: pip install black
+          - name: black
+            run: black .
+          - uses: stefanzweifel/git-auto-commit-action@v3.0.0
+            with:
+              commit_message: Apply Code Formatter Change
+              ref: ${{ github.head_ref }}

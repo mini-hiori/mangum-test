@@ -1,3 +1,4 @@
+# ref: https://github.com/TatchNicolas/sls-mangum-fastapi/blob/master/exam_results/main.py
 from typing import List
 
 from fastapi import FastAPI, HTTPException
@@ -10,8 +11,9 @@ app = FastAPI()
 class HelloParam(BaseModel):
     name: str
 
+
 @app.get("/hello")
-def get_hello(name: str=None):
+def get_hello(name: str = None):
     """
     getでおへんじする
     """
@@ -22,20 +24,18 @@ def get_hello(name: str=None):
 
     return {"message": message}
 
+
 @app.post("/hello_post")
 def post_hello(param: HelloParam):
     """
     postでおへんじする
     """
     if not param.name:
-        raise HTTPException(
-            status_code=400,
-            detail="おなまえがないよ"
-        )
+        raise HTTPException(status_code=400, detail="おなまえがないよ")
     else:
         message = f"[GET]hello, {name}!"
 
     return {"message": message}
 
 
-handler = Mangum(app, False)
+handler = Mangum(app)
