@@ -1,5 +1,5 @@
 # ref:https://qiita.com/yktakaha4/items/ead117870617f45c70d5
-service: lambda-docker-serverless
+service: mangum-test
 
 provider:
   name: aws
