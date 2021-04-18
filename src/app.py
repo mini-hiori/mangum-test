@@ -13,7 +13,7 @@ class HelloParam(BaseModel):
 @app.get("/hello")
 def get_hello(name: str = None):
     """
-    getでおへんじする
+    getで返事する
     """
     if name:
         message = f"[GET]hello, {name}!"
@@ -26,12 +26,12 @@ def get_hello(name: str = None):
 @app.post("/hello_post")
 def post_hello(param: HelloParam):
     """
-    postでおへんじする
+    postで返事する
     """
-    if not param.name:
-        raise HTTPException(status_code=400, detail="おなまえがないよ")
-    else:
+    if param.name:
         message = f"[GET]hello, {param.name}!"
+    else:
+        message = f"[GET]hello, visitor!"
 
     return {"message": message}
 
