@@ -3,6 +3,10 @@
 - ServerlessFrameworkでLambda+APIGatewayをデプロイしてみる
     - 両方とも成功済み
 
+## できるもの
+- 普通のserverless-apiができます
+![](https://raw.githubusercontent.com/mini-hiori/mangum-test/main/docs/architecture.png)
+
 ## つかいかた
 1. ECRを手動で作成
 2. [いつものアレ](https://dev.classmethod.jp/articles/github-action-ecr-push/)にてECRにコンテナをアップロード
