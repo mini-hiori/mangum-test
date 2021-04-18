@@ -11,7 +11,6 @@ app = FastAPI()
 class HelloParam(BaseModel):
     name: str
 
-
 @app.get("/hello")
 def get_hello(name: str = None):
     """
@@ -24,9 +23,8 @@ def get_hello(name: str = None):
 
     return {"message": message}
 
-
 @app.post("/hello_post")
-def post_hello(param: HelloParam):
+def post_hello(param:HelloParam):
     """
     postでおへんじする
     """
